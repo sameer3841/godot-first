@@ -3,6 +3,19 @@ extends CharacterBody2D
 
 const SPEED = 900.0
 const JUMP_VELOCITY = -2400.0
+var respawn_point = Vector2(1750, -500)
+
+func _process(delta):
+	check_fall_off_map()
+func check_fall_off_map():
+	# Set the Y position threshold, for example, if the player falls below Y = 500
+	if position.y > 4500:
+		respawn()
+
+func respawn():
+	# Reset the player's position to the respawn point
+	position = respawn_point
+	velocity = Vector2.ZERO # Reset any velocity to stop the player from moving immediately after respawn
 
 
 func _physics_process(delta: float) -> void:
